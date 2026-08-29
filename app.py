@@ -25,7 +25,7 @@ DB_PATH = "./chroma_db"
 META_FILE_PREFIX = "documents_metadata"
 
 # Correction du nom du modèle ici :
-MODEL_NAME = "gemini-2.5-flash"
+MODEL_NAME = "gemini-3.6-flash"
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
 SYSTEM_PROMPT = """
