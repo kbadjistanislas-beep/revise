@@ -24,7 +24,8 @@ UPLOAD_FOLDER = "uploads"
 DB_PATH = "./chroma_db"
 META_FILE_PREFIX = "documents_metadata"
 
-MODEL_NAME = "gemini-2.5-flash"
+# Correction du nom du modèle ici :
+MODEL_NAME = "gemini-1.5-flash"
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
 SYSTEM_PROMPT = """
@@ -305,7 +306,6 @@ for key, default in {"messages": [], "quiz_data": None, "quiz_answers": {}}.item
     if key not in st.session_state:
         st.session_state[key] = default
 
-# Connexion utilisateur
 if not st.session_state.user_id:
     col_left, col_center, col_right = st.columns([1, 2, 1])
     with col_center:
@@ -327,7 +327,6 @@ if not st.session_state.user_id:
 
 user_id = st.session_state.user_id
 
-# Barre latérale
 with st.sidebar:
     st.title("ReviseAI")
     st.caption(f"Espace personnel : {user_id.capitalize()}")
@@ -346,7 +345,6 @@ with st.sidebar:
         st.session_state.messages = []
         st.rerun()
 
-# Navigation principale
 chat, documents, summary, quizzes = st.tabs([
     "Chat",
     "Documents",
@@ -354,7 +352,6 @@ chat, documents, summary, quizzes = st.tabs([
     "Quiz"
 ])
 
-# Onglet Chat
 with chat:
     st.subheader("Espace de Discussion")
 
@@ -391,7 +388,6 @@ with chat:
 
         st.session_state.messages.append({"role": "assistant", "content": answer})
 
-# Onglet Documents
 with documents:
     st.subheader("Gestion de vos Documents")
 
@@ -475,7 +471,6 @@ with documents:
                         except Exception as e:
                             st.error(str(e))
 
-# Onglet Résumé
 with summary:
     st.subheader("Générateur de Fiche de Révision")
     docs = load_metadata(user_id)
@@ -495,7 +490,6 @@ with summary:
                 with st.container(border=True):
                     st.markdown(summary_text)
 
-# Onglet Quiz
 with quizzes:
     st.subheader("Entraînement et Quiz")
     docs = load_metadata(user_id)
